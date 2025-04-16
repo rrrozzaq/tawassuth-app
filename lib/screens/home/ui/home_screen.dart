@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/components/drawer_app.dart';
+import '../../../core/router/app_router.gr.dart';
 import '../data/menu_model.dart';
 import 'widgets/hero_card.dart';
 import 'widgets/menu_list.dart';
@@ -33,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
         title: 'Scholars',
         icon: Icons.theater_comedy_rounded,
         onTap: () {
-          context.router.back();
+          context.router.push(const ScholarsRoute());
         },
       ),
       MenuModel(
