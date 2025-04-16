@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
       routerConfig: _appRouter.config(),
       debugShowCheckedModeBanner: false,
       title: 'Tawassuth',
+      theme: ThemeData(colorSchemeSeed: Colors.blue, useMaterial3: true),
     );
   }
 }
