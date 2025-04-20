@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:tawassuth/core/components/search_field.dart';
+import 'package:tawassuth/core/router/app_router.gr.dart';
 import 'package:tawassuth/screens/scholars/data/scholars_model.dart';
 
 @RoutePage()
@@ -70,6 +71,7 @@ class _ScholarsScreenState extends State<ScholarsScreen> {
     return Scaffold(
       appBar: AppBar(title: const Text('Scholars'), centerTitle: true),
       body: Column(
+        mainAxisSize: MainAxisSize.max,
         children: [
           TSearchtextField(
             controller: searchCtrl,
@@ -79,14 +81,18 @@ class _ScholarsScreenState extends State<ScholarsScreen> {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Expanded(
+            child: SizedBox(
               child: ListView.builder(
                 shrinkWrap: true,
                 itemCount: scholarsList.length,
                 itemBuilder: (ctx, i) {
                   return Card(
                     child: ListTile(
-                      onTap: () {},
+                      onTap: () {
+                        context.router.push(
+                          ScholarsDetailRoute(scholarsData: scholarsList[i]),
+                        );
+                      },
                       leading: const Icon(Icons.book),
                       title: Text(
                         scholarsList[i].topic,

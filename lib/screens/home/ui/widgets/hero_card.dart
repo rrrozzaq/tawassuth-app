@@ -9,20 +9,20 @@ class THeroCardWidget extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
       padding: const EdgeInsets.all(20),
-      height: screenHeight(context) * 0.2,
+      height: screenHeight(context) * 0.12,
       width: double.infinity,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            Colors.blue.shade900,
-            Colors.blue.shade800,
-            Colors.blue.shade600,
-            Colors.blue.shade500,
-          ],
-        ),
+        // gradient: LinearGradient(
+        //   begin: Alignment.topLeft,
+        //   end: Alignment.bottomRight,
+        //   colors: [
+        //     Colors.blue.shade900,
+        //     Colors.blue.shade800,
+        //     Colors.blue.shade600,
+        //     Colors.blue.shade500,
+        //   ],
+        // ),
       ),
       child: Column(
         spacing: 10,
@@ -50,12 +50,8 @@ class THeroCardWidget extends StatelessWidget {
                         'Drs. Abdul Rozzaq S.T M.T P.T',
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
-                        style: Theme.of(
-                          context,
-                        ).textTheme.titleMedium!.copyWith(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: Theme.of(context).textTheme.titleMedium!
+                            .copyWith(fontWeight: FontWeight.bold),
                       ),
                     ),
 
@@ -69,9 +65,10 @@ class THeroCardWidget extends StatelessWidget {
                           'Indonesia, Jakarta',
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
-                          style: Theme.of(
-                            context,
-                          ).textTheme.titleSmall!.copyWith(color: Colors.white),
+                          style:
+                              Theme.of(
+                                context,
+                              ).textTheme.titleSmall!.copyWith(),
                         ),
                       ],
                     ),
