@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tawassuth/core/router/app_router.dart';
+import 'core/router/app_router.dart';
+import 'utils/color.dart';
 
 void main() {
   runApp(MyApp());
@@ -16,7 +17,11 @@ class MyApp extends StatelessWidget {
       routerConfig: _appRouter.config(),
       debugShowCheckedModeBanner: false,
       title: 'Tawassuth',
-      theme: ThemeData(colorSchemeSeed: Colors.blue, useMaterial3: true),
+      theme: ThemeData(
+        fontFamily: 'Poppins',
+        colorSchemeSeed: TColors.mainColor,
+        useMaterial3: true,
+      ),
     );
   }
 }
