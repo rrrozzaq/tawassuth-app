@@ -26,8 +26,8 @@ class _LoginScreensState extends State<LoginScreens> {
 
   // signUp variable
   final GlobalKey _signupForm = GlobalKey();
-  final forenameCtrl = TextEditingController();
-  final surnameCtrl = TextEditingController();
+  final firstNameCtrl = TextEditingController();
+  final lastNameCtrl = TextEditingController();
   final signEmail = TextEditingController();
   final signPasswordCtrl = TextEditingController();
   final signConfirmPasswordCtrl = TextEditingController();
@@ -38,8 +38,8 @@ class _LoginScreensState extends State<LoginScreens> {
     emailCtrl.dispose();
     passwordCtrl.dispose();
 
-    forenameCtrl.dispose();
-    surnameCtrl.dispose();
+    firstNameCtrl.dispose();
+    lastNameCtrl.dispose();
     signEmail.dispose();
     signPasswordCtrl.dispose();
     signConfirmPasswordCtrl.dispose();
@@ -256,15 +256,15 @@ class _LoginScreensState extends State<LoginScreens> {
           ),
           child: StatefulBuilder(
             builder: (context, setState) {
-              forenameCtrl.addListener(() => setState(() {}));
-              surnameCtrl.addListener(() => setState(() {}));
+              firstNameCtrl.addListener(() => setState(() {}));
+              lastNameCtrl.addListener(() => setState(() {}));
               signEmail.addListener(() => setState(() {}));
               signPasswordCtrl.addListener(() => setState(() {}));
               signConfirmPasswordCtrl.addListener(() => setState(() {}));
 
               bool isFilled =
-                  forenameCtrl.text.isNotEmpty &&
-                  surnameCtrl.text.isNotEmpty &&
+                  firstNameCtrl.text.isNotEmpty &&
+                  lastNameCtrl.text.isNotEmpty &&
                   signEmail.text.trim().isNotEmpty &&
                   signPasswordCtrl.text.isNotEmpty &&
                   signConfirmPasswordCtrl.text.isNotEmpty;
@@ -293,8 +293,8 @@ class _LoginScreensState extends State<LoginScreens> {
                             children: [
                               IconButton(
                                 onPressed: () {
-                                  forenameCtrl.clear();
-                                  surnameCtrl.clear();
+                                  firstNameCtrl.clear();
+                                  lastNameCtrl.clear();
                                   signEmail.clear();
                                   signPasswordCtrl.clear();
                                   signConfirmPasswordCtrl.clear();
@@ -317,13 +317,13 @@ class _LoginScreensState extends State<LoginScreens> {
                                 spacing: 20,
                                 children: [
                                   TTextFormField(
-                                    controller: forenameCtrl,
-                                    label: 'Forename',
+                                    controller: firstNameCtrl,
+                                    label: 'First Name',
                                     keyboardType: TextInputType.text,
                                   ),
                                   TTextFormField(
-                                    controller: surnameCtrl,
-                                    label: 'Surname',
+                                    controller: lastNameCtrl,
+                                    label: 'Last Name',
                                     keyboardType: TextInputType.text,
                                   ),
                                   TTextFormField(
