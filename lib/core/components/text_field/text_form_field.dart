@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tawassuth/utils/color.dart';
+
+import '../../../utils/color.dart';
 
 class TTextFormField extends StatefulWidget {
   const TTextFormField({
@@ -30,17 +31,23 @@ class _TTextFormFieldState extends State<TTextFormField> {
       controller: widget.controller,
       obscureText: widget.isPassword ? _obscure : false,
       keyboardType: widget.keyboardType,
+      style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
       decoration: InputDecoration(
+        contentPadding: const EdgeInsets.symmetric(
+          vertical: 16,
+          horizontal: 16,
+        ),
         labelText: widget.label,
         floatingLabelBehavior: FloatingLabelBehavior.auto,
-        alignLabelWithHint: true,
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: BorderSide(color: Colors.grey.shade400),
+        ),
         focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: TColors.mainColor,
-          ), // bisa diganti sesuai tema
+          borderSide: BorderSide(color: TColors.mainColor, width: 1.8),
           borderRadius: BorderRadius.circular(10),
         ),
+        labelStyle: TextStyle(color: Colors.grey[600], fontSize: 14),
         suffixIcon:
             widget.isPassword
                 ? IconButton(
