@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tawassuth/core/components/asset_image.dart';
+import '../asset_image.dart';
 
 class TOutlinedButton extends StatelessWidget {
   const TOutlinedButton({

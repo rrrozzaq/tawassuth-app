@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tawassuth/core/components/asset_image.dart';
-import 'package:tawassuth/utils/color.dart';
+import '../asset_image.dart';
+import '../../../utils/color.dart';
 
 class TFilledButton extends StatelessWidget {
   const TFilledButton({
