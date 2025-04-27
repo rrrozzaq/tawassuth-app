@@ -4,10 +4,14 @@ import 'package:tawassuth/utils/color.dart';
 import 'package:tawassuth/utils/function_helper.dart';
 import '../screens/home/cubit/prayer_time_cubit.dart';
 import '../screens/home/models/prayer_time_model.dart';
+import 'user_state/user_data_cubit.dart';
 
 final getIt = GetIt.instance;
 
 void setupLocator() {
+  // userData Cubit
+  getIt.registerLazySingleton<UserDataCubit>(() => UserDataCubit());
+
   // Register Cubit or Bloc Here
   getIt.registerLazySingleton<PrayerTimeCubit>(
     () => PrayerTimeCubit([
