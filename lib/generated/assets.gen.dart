@@ -94,11 +94,36 @@ class $AssetsFontsGen {
 class $AssetsIconsGen {
   const $AssetsIconsGen();
 
+  /// File path: assets/icons/book-saved.svg
+  String get bookSaved => 'assets/icons/book-saved.svg';
+
+  /// File path: assets/icons/compass.svg
+  String get compass => 'assets/icons/compass.svg';
+
   /// File path: assets/icons/google.svg
   String get google => 'assets/icons/google.svg';
 
+  /// File path: assets/icons/moreIcon.svg
+  String get moreIcon => 'assets/icons/moreIcon.svg';
+
+  /// Directory path: assets/icons/prayertime
+  $AssetsIconsPrayertimeGen get prayertime => const $AssetsIconsPrayertimeGen();
+
+  /// File path: assets/icons/quran.svg
+  String get quran => 'assets/icons/quran.svg';
+
+  /// File path: assets/icons/scholars.svg
+  String get scholars => 'assets/icons/scholars.svg';
+
   /// List of all assets
-  List<String> get values => [google];
+  List<String> get values => [
+    bookSaved,
+    compass,
+    google,
+    moreIcon,
+    quran,
+    scholars,
+  ];
 }
 
 class $AssetsImagesGen {
@@ -108,12 +133,47 @@ class $AssetsImagesGen {
   AssetGenImage get clockBackground =>
       const AssetGenImage('assets/images/clockBackground.webp');
 
+  /// File path: assets/images/mosqueBackground.webp
+  AssetGenImage get mosqueBackground =>
+      const AssetGenImage('assets/images/mosqueBackground.webp');
+
+  /// File path: assets/images/quranBg.webp
+  AssetGenImage get quranBg =>
+      const AssetGenImage('assets/images/quranBg.webp');
+
   /// File path: assets/images/tawassuthLogo.webp
   AssetGenImage get tawassuthLogo =>
       const AssetGenImage('assets/images/tawassuthLogo.webp');
 
   /// List of all assets
-  List<AssetGenImage> get values => [clockBackground, tawassuthLogo];
+  List<AssetGenImage> get values => [
+    clockBackground,
+    mosqueBackground,
+    quranBg,
+    tawassuthLogo,
+  ];
+}
+
+class $AssetsIconsPrayertimeGen {
+  const $AssetsIconsPrayertimeGen();
+
+  /// File path: assets/icons/prayertime/ashr.svg
+  String get ashr => 'assets/icons/prayertime/ashr.svg';
+
+  /// File path: assets/icons/prayertime/dzuhr.svg
+  String get dzuhr => 'assets/icons/prayertime/dzuhr.svg';
+
+  /// File path: assets/icons/prayertime/fajr.svg
+  String get fajr => 'assets/icons/prayertime/fajr.svg';
+
+  /// File path: assets/icons/prayertime/maghrib.svg
+  String get maghrib => 'assets/icons/prayertime/maghrib.svg';
+
+  /// File path: assets/icons/prayertime/subuh.svg
+  String get subuh => 'assets/icons/prayertime/subuh.svg';
+
+  /// List of all assets
+  List<String> get values => [ashr, dzuhr, fajr, maghrib, subuh];
 }
 
 class Assets {
