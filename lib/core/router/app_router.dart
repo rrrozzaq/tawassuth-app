@@ -7,6 +7,7 @@ class AppRouter extends RootStackRouter {
   List<AutoRoute> get routes => [
     AutoRoute(page: LoginRoutes.page, initial: true),
     AutoRoute(page: HomeRoute.page),
+    AutoRoute(page: QiblatFinderRoute.page),
     // add new routes here
   ];
 }
