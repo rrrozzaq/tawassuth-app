@@ -133,6 +133,9 @@ class $AssetsImagesGen {
   AssetGenImage get clockBackground =>
       const AssetGenImage('assets/images/clockBackground.webp');
 
+  /// File path: assets/images/kaaba.png
+  AssetGenImage get kaaba => const AssetGenImage('assets/images/kaaba.png');
+
   /// File path: assets/images/mosqueBackground.webp
   AssetGenImage get mosqueBackground =>
       const AssetGenImage('assets/images/mosqueBackground.webp');
@@ -148,6 +151,7 @@ class $AssetsImagesGen {
   /// List of all assets
   List<AssetGenImage> get values => [
     clockBackground,
+    kaaba,
     mosqueBackground,
     quranBg,
     tawassuthLogo,
