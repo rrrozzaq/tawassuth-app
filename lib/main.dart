@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'core/router/app_router.dart';
+import 'core/service_locator.dart';
 import 'utils/color.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  setupLocator();
+
   runApp(MyApp());
 }
 
