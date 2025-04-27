@@ -1,4 +1,6 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:tawassuth/core/router/app_router.gr.dart';
 import '../../../../core/components/button/filled_button.dart';
 
 import '../../../../core/components/text_field/text_form_field.dart';
@@ -126,8 +128,17 @@ class _LoginModalsState extends State<LoginModals> {
                                   ),
 
                                   TFilledButton(
+                                    isFullWidth: true,
                                     label: 'Continue',
-                                    onPressed: isFilled ? () {} : () {},
+                                    onPressed:
+                                        isFilled
+                                            ? () {}
+                                            : () {
+                                              context.router.pushAndPopUntil(
+                                                const HomeRoute(),
+                                                predicate: (route) => false,
+                                              );
+                                            },
                                     backgroundColor:
                                         isFilled ? null : Colors.grey.shade300,
                                   ),
