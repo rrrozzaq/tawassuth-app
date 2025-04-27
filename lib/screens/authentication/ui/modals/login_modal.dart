@@ -1,9 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:tawassuth/core/router/app_router.gr.dart';
-import '../../../../core/components/button/filled_button.dart';
 
+import '../../../../core/components/button/filled_button.dart';
 import '../../../../core/components/text_field/text_form_field.dart';
+import '../../../../core/router/app_router.gr.dart';
 import '../login_screen.dart';
 
 class LoginModals extends StatefulWidget {
@@ -132,7 +132,12 @@ class _LoginModalsState extends State<LoginModals> {
                                     label: 'Continue',
                                     onPressed:
                                         isFilled
-                                            ? () {}
+                                            ? () {
+                                              context.router.pushAndPopUntil(
+                                                const HomeRoute(),
+                                                predicate: (route) => false,
+                                              );
+                                            }
                                             : () {
                                               context.router.pushAndPopUntil(
                                                 const HomeRoute(),

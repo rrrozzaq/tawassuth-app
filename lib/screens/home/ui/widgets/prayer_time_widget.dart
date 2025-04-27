@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hijri/hijri_calendar.dart';
+import 'package:tawassuth/core/user_state/user_data_cubit.dart';
+import 'package:tawassuth/utils/permission_app.dart';
 
 import '../../../../core/components/asset_image.dart';
 import '../../../../generated/assets.gen.dart';
@@ -18,6 +20,41 @@ class PrayerTimeWidget extends StatefulWidget {
 
 class _PrayerTimeWidgetState extends State<PrayerTimeWidget> {
   final _todayDate = HijriCalendar.now();
+  String _userLocation = "loading...";
+
+  @override
+  void initState() {
+    super.initState();
+    _initLocation();
+  }
+
+  Future<void> _initLocation() async {
+    try {
+      final location = await getUserLocation();
+      if (mounted) {
+        final address = await getAddressFromLatLng(
+          location.latitude,
+          location.longitude,
+        );
+        if (mounted) {
+          setState(() {
+            _userLocation = address;
+            context.read<UserDataCubit>().setLocation(
+              location.latitude,
+              location.longitude,
+              _userLocation,
+            );
+          });
+        }
+      }
+    } catch (error) {
+      if (mounted) {
+        setState(() {
+          _userLocation = "Not Found"; // Update jika ada error
+        });
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,11 +72,11 @@ class _PrayerTimeWidgetState extends State<PrayerTimeWidget> {
           child: Stack(
             children: [
               Padding(
-                padding: EdgeInsets.only(top: topPadding(context) * 1.5),
+                padding: EdgeInsets.only(top: topPadding(context) * 1.6),
                 child: TAssetImage(
                   Assets.images.mosqueBackground.path,
                   width: double.maxFinite,
-                  height: screenHeight(context) * .25,
+                  height: screenHeight(context) * .3,
                   fit: BoxFit.cover,
                 ),
               ),
@@ -51,7 +88,6 @@ class _PrayerTimeWidgetState extends State<PrayerTimeWidget> {
                   children: [
                     Row(
                       children: [
-                        // Prayer times
                         Expanded(
                           flex: 5,
                           child: Column(
@@ -89,15 +125,12 @@ class _PrayerTimeWidgetState extends State<PrayerTimeWidget> {
                             ],
                           ),
                         ),
-
-                        // islamic Date
                         Expanded(
                           flex: 4,
                           child: Column(
                             spacing: 8,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              // Hijri Calender
                               Text(
                                 _todayDate.toFormat("dd MMMM yyyy"),
                                 style: Theme.of(
@@ -107,39 +140,40 @@ class _PrayerTimeWidgetState extends State<PrayerTimeWidget> {
                                   fontWeight: FontWeight.w600,
                                 ),
                               ),
-
-                              // userLocation
-                              Container(
-                                padding: const EdgeInsets.symmetric(
-                                  vertical: 5,
-                                  horizontal: 8,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: Colors.white.withValues(alpha: .3),
-                                  borderRadius: BorderRadius.circular(16),
-                                ),
-                                child: Row(
-                                  spacing: 5,
-                                  children: [
-                                    const Icon(
-                                      Icons.location_on_sharp,
-                                      color: Colors.white,
-                                      size: 20,
-                                    ),
-                                    Expanded(
-                                      child: Text(
-                                        'Jambi city, Jambi. Indonesia',
-                                        maxLines: 1,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: Theme.of(
-                                          context,
-                                        ).textTheme.bodyMedium!.copyWith(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w500,
+                              InkWell(
+                                onTap: _initLocation, // Hanya panggil sekali
+                                child: Container(
+                                  padding: const EdgeInsets.symmetric(
+                                    vertical: 5,
+                                    horizontal: 8,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white.withValues(alpha: .3),
+                                    borderRadius: BorderRadius.circular(16),
+                                  ),
+                                  child: Row(
+                                    spacing: 5,
+                                    children: [
+                                      const Icon(
+                                        Icons.location_on_sharp,
+                                        color: Colors.white,
+                                        size: 20,
+                                      ),
+                                      Expanded(
+                                        child: Text(
+                                          _userLocation,
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: Theme.of(
+                                            context,
+                                          ).textTheme.bodyMedium!.copyWith(
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.w500,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ),
                             ],
@@ -147,15 +181,12 @@ class _PrayerTimeWidgetState extends State<PrayerTimeWidget> {
                         ),
                       ],
                     ),
-
                     const SizedBox(height: 10),
-                    // prayer times view
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children:
                           listPrayer.map((e) {
                             final isCurrent = prayer == e;
-
                             return Container(
                               padding: const EdgeInsets.symmetric(
                                 vertical: 10,
@@ -185,9 +216,7 @@ class _PrayerTimeWidgetState extends State<PrayerTimeWidget> {
                                       fontWeight: FontWeight.w500,
                                     ),
                                   ),
-
                                   TAssetImage(getImageByTime(e.name)),
-
                                   Text(
                                     "${formatTwoDigits(e.time.hour)}:${formatTwoDigits(e.time.minute)}",
                                     style: Theme.of(

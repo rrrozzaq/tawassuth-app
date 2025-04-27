@@ -1,5 +1,7 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/components/asset_image.dart';
+import '../../../../core/router/app_router.gr.dart';
 import '../../../../generated/assets.gen.dart';
 import '../../../../utils/color.dart';
 import '../../../../utils/ui_helper.dart';
@@ -33,7 +35,9 @@ class _MenuContainerState extends State<MenuContainer> {
         bgColor: TColors.purpleAccent,
         iconPath: Assets.icons.compass,
         title: 'Qiblat',
-        onTap: () {},
+        onTap: () {
+          context.router.push(const QiblatFinderRoute());
+        },
       ),
       FeatureMenuContainer(
         bgColor: TColors.orangeAccent,
